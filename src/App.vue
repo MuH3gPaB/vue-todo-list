@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1>{{ getMe }}</h1>
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
@@ -7,11 +8,16 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import {mapGetters} from "vuex";
+
 
 export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  computed: {
+    ...mapGetters(['getMe'])
   }
 }
 </script>
