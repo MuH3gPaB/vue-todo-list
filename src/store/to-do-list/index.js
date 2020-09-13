@@ -4,6 +4,7 @@ import state from "@/store/to-do-list/state";
 import mutations from "@/store/to-do-list/mutations";
 
 export default {
+    namespaced: true,
     actions,
     getters,
     state,

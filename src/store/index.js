@@ -1,3 +1,3 @@
-import ToDoList from './to-do-list'
+import ToDoListModule from './to-do-list'
 
-export default [ToDoList];
+export default {ToDoListModule};
