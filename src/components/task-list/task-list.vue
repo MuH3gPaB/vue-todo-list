@@ -1,19 +1,15 @@
 <template>
   <div>
-    <AddTaskForm></AddTaskForm>
-    <TaskBar></TaskBar>
-    <TaskBarList></TaskBarList>
+    <task-bar-list></task-bar-list>
   </div>
 </template>
 
 <script>
-import AddTaskForm from './add-task-form/add-task-form';
-import TaskBar from './task-bar/task-bar';
-import TaskBarList from './task-bar-list/task-bar-list';
+import TaskBarList from './task-bar-list/task-bar-list.vue'
 
 export default {
   name: "task-list",
-  components: {AddTaskForm, TaskBar, TaskBarList}
+  components: {TaskBarList}
 };
 </script>
 

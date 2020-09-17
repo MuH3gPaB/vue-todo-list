@@ -1,6 +1,6 @@
 const getters = {
-    getMe() {
-        return "HERE I AM!";
+    getTasks(state) {
+        return state.tasks;
     }
 };
 

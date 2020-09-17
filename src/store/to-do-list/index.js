@@ -5,8 +5,8 @@ import mutations from "@/store/to-do-list/mutations";
 
 export default {
     namespaced: true,
-    actions,
-    getters,
-    state,
-    mutations
+    actions,            // addTask, removeTask, setDone, setNotDone
+    getters,            // getDoneTasks, getNotDoneTasks, getSorts
+    state,              // tasks
+    mutations           // addTask, removeTask, setDone, setNotDone
 };
