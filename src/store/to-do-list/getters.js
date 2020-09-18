@@ -1,6 +1,6 @@
 const getters = {
-    getTasks(state) {
-        return state.tasks;
+    getTasksModulesIds(state) {
+        return Object.keys(state);
     }
 };
 

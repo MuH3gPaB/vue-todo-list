@@ -6,21 +6,23 @@
     <div class="task">
       <input type="checkbox"
              class="form-control checkbox"
-             v-model="this.task.isDone"/>
+             v-model="isDone"/>
 
       <p class="text" v-show="!edit">
-        {{ task.text }}
+        {{ text }}
       </p>
 
+      <keep-alive>
       <textarea class="text text-input"
                 v-show="edit"
-                v-model="task.text"
+                v-model="text"
                 ref="editor"
                 @focusout="edit = false"
                 @keydown="onTextType"
                 @keydown.enter.prevent="onKeyEnter"
                 @keydown.esc.prevent="onKeyEsc"
       ></textarea>
+      </keep-alive>
 
       <div class="time">
         <p class="created">{{ createdDate }}</p>
@@ -32,6 +34,9 @@
 </template>
 
 <script>
+import {MODULE_NAME} from "@/store/to-do-list";
+import {SET_IS_DONE, SET_TEXT} from "@/store/task/mutations";
+
 const TIME_FORMAT = {
   hour: '2-digit',
   minute: '2-digit',
@@ -48,25 +53,47 @@ export default {
     }
   },
   props: {
-    task: {
-      type: Object,
-      defaultValue: {}
+    taskModuleId: {
+      type: String,
+      required: true
     }
   },
   computed: {
+    isDone: {
+      get() {
+        return this.task.isDone;
+      },
+      set(value) {
+        this.dispatch(SET_IS_DONE, value);
+      }
+    },
+    text: {
+      get() {
+        return this.task.text;
+      },
+      set(value) {
+        this.commit(SET_TEXT, value);
+      }
+    },
     createdDate() {
       return this.formatDate(this.task.createdDate);
     },
     dueDate() {
       return this.formatDate(this.task.dueDate);
+    },
+    task() {
+      return this.$store.state[MODULE_NAME][this.taskModuleId];
     }
   },
   methods: {
+    commit(action, arg) {
+      this.$store.commit(`${MODULE_NAME}/${this.taskModuleId}/${action}`, arg);
+    },
     formatDate(date) {
       return date && date.toLocaleTimeString([], TIME_FORMAT).toUpperCase();
     },
     onDelete() {
-      this.$emit('task-deleted', this.task);
+      this.$store.unregisterModule([MODULE_NAME, this.taskModuleId]);
     },
     onDoubleClick() {
       this.oldText = this.task.text;
