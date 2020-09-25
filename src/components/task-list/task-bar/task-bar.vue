@@ -64,7 +64,7 @@ export default {
         return this.task.isDone;
       },
       set(value) {
-        this.dispatch(SET_IS_DONE, value);
+        this.commit(SET_IS_DONE, value);
       }
     },
     text: {

@@ -1,39 +1,65 @@
 <template>
   <div class="task-bar-list">
     <div class="bar-list-header">
-      <p class="bar-list-label">Open</p>
-      <select class="form-control input-lg sort-select">
+      <p class="bar-list-label">{{ listName }}</p>
+      <select class="form-control input-lg sort-select"
+              v-if="Object.keys(taskSortOptions)[0]"
+              @change="onSortChange">
+        <option v-for="(sortOption, sortCode) in taskSortOptions"
+                :key="sortCode"
+                :value="sortCode">
+          {{ sortOption.label }}
+        </option>
       </select>
     </div>
     <div class="bar-list-body">
-      <task-bar v-for="taskModuleId in getTasksModulesIds"
+      <task-bar v-for="taskModuleId in tasksModulesIds"
                 :taskModuleId="taskModuleId"
                 :key="taskModuleId">
       </task-bar>
     </div>
     <div class="bar-list-footer">
-      <a href="#" class="bar-list-clear">Clear "Open" list</a>
+      <a
+          href="#"
+          class="bar-list-clear"
+          @click="onClear"
+      >
+        Clear "{{ listName }}" list
+      </a>
     </div>
   </div>
 </template>
 
 <script>
-import {mapActions, mapGetters} from 'vuex';
 import TaskBar from '../task-bar/task-bar';
+import {MODULE_NAME} from "@/store/to-do-list";
 
 export default {
   name: "task-bar-list",
   components: {
     TaskBar
   },
-  computed: {
-    ...mapGetters('ToDoListModule', ['getTasksModulesIds'])
+  props: {
+    tasksModulesIds: {
+      type: Array,
+      default: () => []
+    },
+    listName: {
+      type: String,
+      required: true
+    },
+    taskSortOptions: {
+      type: Object,
+      default: () => {}
+    }
   },
   methods: {
-    ...mapActions('ToDoListModule', ['loadTasks'])
-  },
-  mounted() {
-    this.loadTasks();
+    onClear() {
+      this.tasksModulesIds.forEach(task => this.$store.unregisterModule([MODULE_NAME, task]));
+    },
+    onSortChange(event) {
+      this.$emit('sortChange', event.target.value);
+    }
   }
 }
 </script>

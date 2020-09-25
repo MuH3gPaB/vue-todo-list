@@ -13,6 +13,12 @@ const actions = {
             let taskModule = CreateTaskModule(task);
             this.registerModule([MODULE_NAME, TASK_MODULE_NAME + task.id], taskModule);
         });
+    },
+    setOpenTasksCurrentSortCode({commit}, value) {
+        commit('setOpenTasksCurrentSortCode', value);
+    },
+    setDoneTaskCurrentSortCode({commit}, value) {
+        commit('setDoneTaskCurrentSortCode', value);
     }
 };
 
