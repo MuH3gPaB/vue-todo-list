@@ -4,6 +4,7 @@
       <p class="bar-list-label">{{ listName }}</p>
       <select class="form-control input-lg sort-select"
               v-if="Object.keys(taskSortOptions)[0]"
+              :value="currentSortCode"
               @change="onSortChange">
         <option v-for="(sortOption, sortCode) in taskSortOptions"
                 :key="sortCode"
@@ -50,7 +51,12 @@ export default {
     },
     taskSortOptions: {
       type: Object,
-      default: () => {}
+      default: () => {
+      }
+    },
+    currentSortCode: {
+      type: String,
+      default: ''
     }
   },
   methods: {

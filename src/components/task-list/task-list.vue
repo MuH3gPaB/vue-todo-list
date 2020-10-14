@@ -4,12 +4,14 @@
         :tasks-modules-ids="getOpenTaskModuleIds"
         list-name="Open"
         :task-sort-options="openTasksSortOptions"
+        :current-sort-code="openTasksCurrentSortCode"
         @sortChange="openTasksSortChanged"
     />
     <task-bar-list
         :tasks-modules-ids="getDoneTaskModuleIds"
         list-name="Done"
         :task-sort-options="doneTasksSortOptions"
+        :current-sort-code="doneTasksCurrentSortCode"
         @sortChange="doneTasksSortChanged"
     />
   </div>
@@ -17,7 +19,7 @@
 
 <script>
 import TaskBarList from './task-bar-list/task-bar-list.vue'
-import {mapActions, mapGetters} from "vuex";
+import {mapActions, mapGetters, mapState} from "vuex";
 
 export default {
   name: "task-list",
@@ -26,13 +28,13 @@ export default {
     ...mapActions('ToDoListModule', [
       'loadTasks',
       'setOpenTasksCurrentSortCode',
-      'setDoneTaskCurrentSortCode'
+      'setDoneTasksCurrentSortCode'
     ]),
     openTasksSortChanged(value) {
       this.setOpenTasksCurrentSortCode(value);
     },
     doneTasksSortChanged(value) {
-      this.setDoneTaskCurrentSortCode(value);
+      this.setDoneTasksCurrentSortCode(value);
     }
   },
   computed: {
@@ -42,6 +44,11 @@ export default {
       'getTasksSortOptions',
       'getOpenTasksCurrentSort',
       'getDoneTasksCurrentSort'
+    ]),
+
+    ...mapState('ToDoListModule', [
+      'openTasksCurrentSortCode',
+      'doneTasksCurrentSortCode'
     ]),
 
     openTasksSortOptions() {

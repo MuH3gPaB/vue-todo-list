@@ -2,8 +2,8 @@ const mutations = {
     setOpenTasksCurrentSortCode(state, value) {
         state.openTasksCurrentSortCode = value;
     },
-    setDoneTaskCurrentSortCode(state, value) {
-        state.doneTaskCurrentSortCode = value;
+    setDoneTasksCurrentSortCode(state, value) {
+        state.doneTasksCurrentSortCode = value;
     }
 };
 

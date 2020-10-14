@@ -1,6 +1,6 @@
 const state = {
     openTasksCurrentSortCode: 'CREATED_AT_ASC',
-    doneTaskCurrentSortCode: 'DUE_DATE_ASC',
+    doneTasksCurrentSortCode: 'DUE_DATE_ASC',
     taskSortOptions: {
         CREATED_AT_ASC: {
             label: 'Date creation (Asc)',

@@ -90,6 +90,10 @@ export default {
       this.$store.commit(`${MODULE_NAME}/${this.taskModuleId}/${action}`, arg);
     },
     formatDate(date) {
+      date = date instanceof Date
+          ? date
+          : new Date(date);
+
       return date && date.toLocaleTimeString([], TIME_FORMAT).toUpperCase();
     },
     onDelete() {
