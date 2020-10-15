@@ -1,19 +1,21 @@
 <template>
-  <div>
-    <task-bar-list
-        :tasks-modules-ids="getOpenTaskModuleIds"
-        list-name="Open"
-        :task-sort-options="openTasksSortOptions"
-        :current-sort-code="openTasksCurrentSortCode"
-        @sortChange="openTasksSortChanged"
-    />
-    <task-bar-list
-        :tasks-modules-ids="getDoneTaskModuleIds"
-        list-name="Done"
-        :task-sort-options="doneTasksSortOptions"
-        :current-sort-code="doneTasksCurrentSortCode"
-        @sortChange="doneTasksSortChanged"
-    />
+  <div class="task-list">
+    <div class="task-list-container">
+      <task-bar-list
+          :tasks-modules-ids="getOpenTaskModuleIds"
+          list-name="Open"
+          :task-sort-options="openTasksSortOptions"
+          :current-sort-code="openTasksCurrentSortCode"
+          @sortChange="openTasksSortChanged"
+      />
+      <task-bar-list
+          :tasks-modules-ids="getDoneTaskModuleIds"
+          list-name="Done"
+          :task-sort-options="doneTasksSortOptions"
+          :current-sort-code="doneTasksCurrentSortCode"
+          @sortChange="doneTasksSortChanged"
+      />
+    </div>
   </div>
 </template>
 
@@ -67,6 +69,17 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="less">
+.task-list {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 
+  .task-list-container {
+    max-width: 800px;
+    min-width: 300px;
+    flex-basis: 800px;
+  }
+}
 </style>

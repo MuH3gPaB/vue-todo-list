@@ -75,7 +75,6 @@ export default {
 
 .task-bar-list {
   display: flex;
-  flex-basis: 45%;
   flex-direction: column;
   padding: 0 10px 0 10px;
   margin: 5px 0 10px 0;
@@ -122,4 +121,5 @@ export default {
   box-shadow: none;
   border-radius: 0%;
 }
+
 </style>
