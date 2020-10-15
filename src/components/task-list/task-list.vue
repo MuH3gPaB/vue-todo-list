@@ -1,6 +1,9 @@
 <template>
   <div class="task-list">
     <div class="task-list-container">
+      <add-task-form>
+
+      </add-task-form>
       <task-bar-list
           :tasks-modules-ids="getOpenTaskModuleIds"
           list-name="Open"
@@ -22,10 +25,11 @@
 <script>
 import TaskBarList from './task-bar-list/task-bar-list.vue'
 import {mapActions, mapGetters, mapState} from "vuex";
+import AddTaskForm from "@/components/task-list/add-task-form/add-task-form";
 
 export default {
   name: "task-list",
-  components: {TaskBarList},
+  components: {AddTaskForm, TaskBarList},
   methods: {
     ...mapActions('ToDoListModule', [
       'loadTasks',

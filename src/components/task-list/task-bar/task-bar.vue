@@ -92,7 +92,9 @@ export default {
     formatDate(date) {
       date = date instanceof Date
           ? date
-          : new Date(date);
+          : date
+              ? new Date(date)
+              : date;
 
       return date && date.toLocaleTimeString([], TIME_FORMAT).toUpperCase();
     },

@@ -1,30 +1,32 @@
-import CreateTaskModule, {TASK_MODULE_NAME} from '../task';
-import {MODULE_NAME} from "@/store/to-do-list/index";
+import {TASK_MODULE_NAME} from '../task';
+import {ADD_NEW_TASK_MUTATION, DELETE_STATE_KEY_MUTATION} from "@/store/to-do-list/mutations";
 
 const actions = {
-    loadTasks({state}) {
-
+    loadTasks({state, commit}) {
         Object.keys(state)
             .filter(key => key.startsWith(TASK_MODULE_NAME))
             .forEach(key => {
                 let task = state[key];
-                let taskModule = CreateTaskModule(task);
-                delete state[key];
-                this.registerModule([MODULE_NAME, TASK_MODULE_NAME + task.id], taskModule);
+                commit(DELETE_STATE_KEY_MUTATION, key);
+                commit(ADD_NEW_TASK_MUTATION, task);
             });
-
-        // const tasks =
-        // [
-        //     {id: 0, text: 'task 0', createdDate: new Date(), dueDate: null, isDone: false},
-        //     {id: 1, text: 'task 1', createdDate: new Date(), dueDate: null, isDone: false},
-        //     {id: 2, text: 'task 2', createdDate: new Date(), dueDate: new Date(), isDone: true},
-        // ];
     },
     setOpenTasksCurrentSortCode({commit}, value) {
         commit('setOpenTasksCurrentSortCode', value);
     },
     setDoneTasksCurrentSortCode({commit}, value) {
         commit('setDoneTasksCurrentSortCode', value);
+    },
+    addNewTask({commit, getters}, taskText) {
+        let newTask = {
+            id: getters.getNextTaskId,
+            text: taskText,
+            createdDate: new Date(),
+            dueDate: null,
+            isDone: false
+        }
+
+        commit(ADD_NEW_TASK_MUTATION, newTask);
     }
 };
 

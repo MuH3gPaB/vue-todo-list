@@ -1,6 +1,9 @@
 const mutations = () => ({
     setIsDone(state, value) {
         state.isDone = value;
+        state.dueDate = value
+            ? new Date()
+            : null;
     },
     setText(state, value) {
         state.text = value;
