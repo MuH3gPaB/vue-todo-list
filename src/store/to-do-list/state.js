@@ -1,4 +1,5 @@
 const state = {
+    searchString: '',
     openTasksCurrentSortCode: 'CREATED_AT_ASC',
     doneTasksCurrentSortCode: 'DUE_DATE_ASC',
     taskSortOptions: {

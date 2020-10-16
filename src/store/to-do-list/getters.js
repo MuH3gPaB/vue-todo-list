@@ -4,11 +4,13 @@ const getters = {
     getOpenTaskModuleIds(state) {
         return Object.keys(state)
             .filter(key => state[key].isDone === false)
+            .filter(key => state[key].text.includes(state.searchString))
             .sort((key1, key2) => state.taskSortOptions[state.openTasksCurrentSortCode].comparator(state[key1], state[key2]));
     },
     getDoneTaskModuleIds(state) {
         return Object.keys(state)
             .filter(key => state[key].isDone === true)
+            .filter(key => state[key].text.includes(state.searchString))
             .sort((key1, key2) => state.taskSortOptions[state.doneTasksCurrentSortCode].comparator(state[key1], state[key2]));
     },
     getNextTaskId(state) {

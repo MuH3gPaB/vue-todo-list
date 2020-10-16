@@ -36,6 +36,7 @@
 <script>
 import {MODULE_NAME} from "@/store/to-do-list";
 import {SET_IS_DONE, SET_TEXT} from "@/store/task/mutations";
+import {mapActions} from "vuex";
 
 const TIME_FORMAT = {
   hour: '2-digit',
@@ -86,6 +87,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions('ToDoListModule', ['deleteTask']),
     commit(action, arg) {
       this.$store.commit(`${MODULE_NAME}/${this.taskModuleId}/${action}`, arg);
     },
@@ -99,7 +101,7 @@ export default {
       return date && date.toLocaleTimeString([], TIME_FORMAT).toUpperCase();
     },
     onDelete() {
-      this.$store.unregisterModule([MODULE_NAME, this.taskModuleId]);
+      this.deleteTask(this.taskModuleId);
     },
     onDoubleClick() {
       this.oldText = this.task.text;
