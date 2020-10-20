@@ -8,8 +8,8 @@ export const MODULE_NAME = 'ToDoListModule';
 export default {
     MODULE_NAME,
     namespaced: true,
-    actions,            // addTask, removeTask, setDone, setNotDone
-    getters,            // getDoneTasks, getNotDoneTasks, getSorts
-    state,              // tasks
-    mutations           // addTask, removeTask, setDone, setNotDone
+    actions,
+    getters,
+    state,
+    mutations
 };
