@@ -1,13 +1,10 @@
-import {beforeEach, describe, it, jest} from "@jest/globals";
+import {beforeEach, describe, it} from "@jest/globals";
 import TaskBar from './task-bar';
 import ToDoListModule from '@/store/to-do-list';
 import TaskModule from '@/store/task';
 import {createLocalVue, mount} from "vue-test-utils";
 import Vuex from 'vuex';
 import {mockModule} from "@/test-util/TestUtils";
-
-
-jest.mock("@/store/to-do-list");
 
 function mockStore(task) {
     return mockModule({}, {

@@ -51,8 +51,7 @@ export default {
     },
     taskSortOptions: {
       type: Object,
-      default: () => {
-      }
+      default: () => ({})
     },
     currentSortCode: {
       type: String,
