@@ -1,0 +1,362 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskList should match snapshot 1`] = `
+<div
+  class="task-list"
+>
+  <div
+    class="task-list-container"
+  >
+    <div>
+      <div
+        class="todo-list-header form-inline"
+      >
+        <label
+          class="todo-list-label"
+          for="search-input"
+        >
+          Todo List
+        </label>
+         
+        <input
+          class="input-lg form-control search-input"
+          id="search-input"
+          placeholder="Search..."
+          type="text"
+        />
+      </div>
+    </div>
+     
+    <form
+      class="todo-list-add form-inline"
+    >
+      <input
+        class="new-task-input form-control input-lg"
+        formaction="#"
+        placeholder="New task..."
+        type="text"
+      />
+       
+      <input
+        class="btn-lg add-button"
+        type="button"
+        value="ADD"
+      />
+    </form>
+     
+    <div
+      class="task-bar-list"
+    >
+      <div
+        class="bar-list-header"
+      >
+        <p
+          class="bar-list-label"
+        >
+          Open
+        </p>
+         
+        <select
+          class="form-control input-lg sort-select"
+        >
+          <option
+            value="CREATED_AT_ASC"
+          >
+            
+        Date creation (Asc)
+      
+          </option>
+          <option
+            value="CREATED_AT_DESC"
+          >
+            
+        Date creation (Desc)
+      
+          </option>
+          <option
+            value="TEXT_ASC"
+          >
+            
+        Text (Asc)
+      
+          </option>
+          <option
+            value="TEXT_DESC"
+          >
+            
+        Text (Desc)
+      
+          </option>
+        </select>
+      </div>
+       
+      <div
+        class="bar-list-body"
+      >
+        <div
+          class="task-bar"
+        >
+          <div
+            class="task"
+          >
+            <input
+              class="form-control checkbox"
+              type="checkbox"
+            />
+             
+            <p
+              class="text"
+            >
+              
+      Test Task1
+    
+            </p>
+             
+            <textarea
+              class="text text-input"
+              style="display: none;"
+            />
+             
+            <div
+              class="time"
+            >
+              <p
+                class="created"
+              >
+                10:24 PM
+              </p>
+               
+              <p
+                class="completed"
+              >
+                
+              </p>
+            </div>
+          </div>
+           
+          <div
+            class="delete"
+            style="display: none;"
+          />
+        </div>
+        <div
+          class="task-bar"
+        >
+          <div
+            class="task"
+          >
+            <input
+              class="form-control checkbox"
+              type="checkbox"
+            />
+             
+            <p
+              class="text"
+            >
+              
+      Test Task2
+    
+            </p>
+             
+            <textarea
+              class="text text-input"
+              style="display: none;"
+            />
+             
+            <div
+              class="time"
+            >
+              <p
+                class="created"
+              >
+                10:24 PM
+              </p>
+               
+              <p
+                class="completed"
+              >
+                
+              </p>
+            </div>
+          </div>
+           
+          <div
+            class="delete"
+            style="display: none;"
+          />
+        </div>
+      </div>
+       
+      <div
+        class="bar-list-footer"
+      >
+        <a
+          class="bar-list-clear"
+          href="#"
+        >
+          
+      Clear "Open" list
+    
+        </a>
+      </div>
+    </div>
+     
+    <div
+      class="task-bar-list"
+    >
+      <div
+        class="bar-list-header"
+      >
+        <p
+          class="bar-list-label"
+        >
+          Done
+        </p>
+         
+        <select
+          class="form-control input-lg sort-select"
+        >
+          <option
+            value="DUE_DATE_ASC"
+          >
+            
+        Due date (Asc)
+      
+          </option>
+          <option
+            value="DUE_DATE_DESC"
+          >
+            
+        Due date (Desc)
+      
+          </option>
+          <option
+            value="TEXT_ASC"
+          >
+            
+        Text (Asc)
+      
+          </option>
+          <option
+            value="TEXT_DESC"
+          >
+            
+        Text (Desc)
+      
+          </option>
+        </select>
+      </div>
+       
+      <div
+        class="bar-list-body"
+      >
+        <div
+          class="task-bar"
+        >
+          <div
+            class="task"
+          >
+            <input
+              class="form-control checkbox"
+              type="checkbox"
+            />
+             
+            <p
+              class="text"
+            >
+              
+      Test Task3
+    
+            </p>
+             
+            <textarea
+              class="text text-input"
+              style="display: none;"
+            />
+             
+            <div
+              class="time"
+            >
+              <p
+                class="created"
+              >
+                10:24 PM
+              </p>
+               
+              <p
+                class="completed"
+              >
+                10:54 PM
+              </p>
+            </div>
+          </div>
+           
+          <div
+            class="delete"
+            style="display: none;"
+          />
+        </div>
+        <div
+          class="task-bar"
+        >
+          <div
+            class="task"
+          >
+            <input
+              class="form-control checkbox"
+              type="checkbox"
+            />
+             
+            <p
+              class="text"
+            >
+              
+      Test Task4
+    
+            </p>
+             
+            <textarea
+              class="text text-input"
+              style="display: none;"
+            />
+             
+            <div
+              class="time"
+            >
+              <p
+                class="created"
+              >
+                10:24 PM
+              </p>
+               
+              <p
+                class="completed"
+              >
+                10:54 PM
+              </p>
+            </div>
+          </div>
+           
+          <div
+            class="delete"
+            style="display: none;"
+          />
+        </div>
+      </div>
+       
+      <div
+        class="bar-list-footer"
+      >
+        <a
+          class="bar-list-clear"
+          href="#"
+        >
+          
+      Clear "Done" list
+    
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -25,8 +25,8 @@
 <script>
 import TaskBarList from './task-bar-list/task-bar-list.vue'
 import {mapActions, mapGetters, mapState} from "vuex";
-import AddTaskForm from "@/components/task-list/add-task-form/add-task-form";
-import TaskListHeader from "@/components/task-list/task-list-header/task-list-header";
+import AddTaskForm from "./add-task-form/add-task-form";
+import TaskListHeader from "./task-list-header/task-list-header";
 
 export default {
   name: "task-list",
