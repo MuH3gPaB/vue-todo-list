@@ -1,6 +1,8 @@
 import {afterEach, beforeEach, describe, it, jest} from "@jest/globals";
 import mutations from "./mutations";
+import getters from "./getters";
 import {MODULE_NAME} from "@/store/to-do-list/index";
+import {TASK_MODULE_NAME} from "@/store/task";
 
 jest.mock('@/store/task', () => {
     let module = (task) => task;
@@ -83,6 +85,132 @@ describe('mutations', () => {
             let value = 'searchString';
             mutations.setSearchString(state, value);
             expect(state.searchString).toBe(value);
+        });
+    });
+});
+
+describe('getters', () => {
+    let state;
+
+    beforeEach(() => {
+        state = {
+            searchString: '',
+            openTasksCurrentSortCode: 'OPEN_SORT',
+            doneTasksCurrentSortCode: 'DONE_SORT',
+            taskSortOptions: {
+                OPEN_SORT: {
+                    comparator() {
+                        return 0;
+                    }
+                },
+                DONE_SORT: {
+                    comparator() {
+                        return 0;
+                    }
+                }
+            }
+        };
+    });
+
+    describe('getOpenTaskModuleIds', () => {
+        it('should filter out done tasks', () => {
+            Object.assign(state, {
+                Task0: {id: 0, isDone: false, text: 'Task0'},
+                Task1: {id: 1, isDone: true, text: 'Task1'}
+            });
+
+            let openTaskModuleIds = getters.getOpenTaskModuleIds(state);
+
+            expect(openTaskModuleIds).toEqual(['Task0']);
+        });
+
+        it('should consider search string', () => {
+            Object.assign(state, {
+                Task0: {id: 0, isDone: false, text: 'searched text'},
+                Task1: {id: 1, isDone: false, text: 'other thing'},
+                searchString: 'searched'
+            });
+
+            let openTaskModuleIds = getters.getOpenTaskModuleIds(state);
+
+            expect(openTaskModuleIds).toEqual(['Task0']);
+        });
+
+        it('should sort results using configured comparator', () => {
+            Object.assign(state, {
+                Task0: {id: 0, isDone: false, text: 'Task0'},
+                Task1: {id: 1, isDone: false, text: 'Task1'},
+                taskSortOptions: {
+                    OPEN_SORT: {
+                        comparator(t1, t2) {
+                            return t1.id < t2.id ? 1 : -1;
+                        }
+                    }
+                }
+            });
+
+            let openTaskModuleIds = getters.getOpenTaskModuleIds(state);
+
+            expect(openTaskModuleIds).toEqual(['Task1', 'Task0']);
+        });
+    });
+
+    describe('getDoneTaskModuleIds', () => {
+        it('should filter out open tasks', () => {
+            Object.assign(state, {
+                Task0: {id: 0, isDone: true, text: 'Task0'},
+                Task1: {id: 1, isDone: false, text: 'Task1'}
+            });
+
+            let doneTaskModuleIds = getters.getDoneTaskModuleIds(state);
+
+            expect(doneTaskModuleIds).toEqual(['Task0']);
+        });
+
+        it('should consider search string', () => {
+            Object.assign(state, {
+                Task0: {id: 0, isDone: true, text: 'searched text'},
+                Task1: {id: 1, isDone: true, text: 'other thing'},
+                searchString: 'searched'
+            });
+
+            let doneTaskModuleIds = getters.getDoneTaskModuleIds(state);
+
+            expect(doneTaskModuleIds).toEqual(['Task0']);
+        });
+
+        it('should sort results using configured comparator', () => {
+            Object.assign(state, {
+                Task0: {id: 0, isDone: true, text: 'Task0'},
+                Task1: {id: 1, isDone: true, text: 'Task1'},
+                taskSortOptions: {
+                    DONE_SORT: {
+                        comparator(t1, t2) {
+                            return t1.id < t2.id ? 1 : -1;
+                        }
+                    }
+                }
+            });
+
+            let doneTaskModuleIds = getters.getDoneTaskModuleIds(state);
+
+            expect(doneTaskModuleIds).toEqual(['Task1', 'Task0']);
+        });
+    });
+
+    describe('getNextTaskId', () => {
+
+        it('should start counting from 1', () => {
+            expect(getters.getNextTaskId(state)).toBe(1);
+        });
+
+        it('should return highest id +1', () => {
+            Object.assign(state, {
+                Task22: {id: 22},
+                Task18: {id: 18}
+            });
+
+            expect(getters.getNextTaskId(state)).toBe(23);
         });
     });
 });
