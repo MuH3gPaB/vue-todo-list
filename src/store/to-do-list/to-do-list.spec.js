@@ -1,6 +1,7 @@
 import {afterEach, beforeEach, describe, it, jest} from "@jest/globals";
-import mutations from "./mutations";
+import mutations, {ADD_NEW_TASK_MUTATION, DELETE_STATE_KEY_MUTATION, SET_SEARCH_STRING} from "./mutations";
 import getters from "./getters";
+import actions from "./actions";
 import {MODULE_NAME} from "@/store/to-do-list/index";
 import {TASK_MODULE_NAME} from "@/store/task";
 
@@ -211,6 +212,40 @@ describe('getters', () => {
             });
 
             expect(getters.getNextTaskId(state)).toBe(23);
+        });
+    });
+});
+
+describe('actions', () => {
+    let state;
+    let commit;
+
+    beforeEach(() => {
+        state = {};
+        commit = jest.fn();
+    });
+
+    describe('loadTasks', () => {
+        it('should commit empty search string mutation', () => {
+            actions.loadTasks({state, commit});
+            expect(commit.mock.calls[0][0]).toBe(SET_SEARCH_STRING);
+            expect(commit.mock.calls[0][1]).toBe('');
+        });
+
+        it('should reload task fields to modules', () => {
+            Object.assign(state, {
+                Task0: {id: 0, isDone: false, text: 'Task0'},
+                Task1: {id: 1, isDone: true, text: 'Task1'}
+            });
+
+            actions.loadTasks({state, commit});
+
+            [0, 1].forEach(taskId => {
+                expect(commit.mock.calls[taskId * 2 + 1][0]).toBe(DELETE_STATE_KEY_MUTATION);
+                expect(commit.mock.calls[taskId * 2 + 1][1]).toBe(TASK_MODULE_NAME + taskId);
+                expect(commit.mock.calls[taskId * 2 + 2][0]).toBe(ADD_NEW_TASK_MUTATION);
+                expect(commit.mock.calls[taskId * 2 + 2][1]).toBe(state[TASK_MODULE_NAME + taskId]);
+            });
         });
     });
 });
